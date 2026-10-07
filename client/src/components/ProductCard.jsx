@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { ShoppingCart, Star, Check, Heart, Eye } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ShoppingCart, Star, Check, Heart, Eye, ArrowRight } from 'lucide-react';
 
 export default function ProductCard({ product, onAddToCart }) {
   const [isAdded, setIsAdded] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
 
-  const handleAdd = () => {
+  const handleAdd = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     setIsAdded(true);
     if (onAddToCart) {
       onAddToCart(product);
@@ -18,7 +21,7 @@ export default function ProductCard({ product, onAddToCart }) {
   return (
     <div className="product-card">
       {/* Product Image Container */}
-      <div className="product-image-container">
+      <Link to={`/product/${product.id}`} className="product-image-container">
         {product.discount && (
           <span className="discount-badge">-{product.discount}%</span>
         )}
@@ -38,21 +41,20 @@ export default function ProductCard({ product, onAddToCart }) {
           <button
             type="button"
             className={`overlay-action-btn ${isLiked ? 'liked' : ''}`}
-            onClick={() => setIsLiked(!isLiked)}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setIsLiked(!isLiked);
+            }}
             aria-label="Wishlist"
           >
             <Heart size={18} fill={isLiked ? '#ef4444' : 'none'} color={isLiked ? '#ef4444' : 'currentColor'} />
           </button>
-          <button
-            type="button"
-            className="overlay-action-btn"
-            onClick={() => alert(`Viewing details for ${product.name}`)}
-            aria-label="Quick View"
-          >
+          <span className="overlay-action-btn" aria-label="View Details">
             <Eye size={18} />
-          </button>
+          </span>
         </div>
-      </div>
+      </Link>
 
       {/* Product Info */}
       <div className="product-details">
@@ -65,17 +67,28 @@ export default function ProductCard({ product, onAddToCart }) {
           </div>
         </div>
 
-        <h3 className="product-title" title={product.name}>
-          {product.name}
-        </h3>
+        <Link to={`/product/${product.id}`}>
+          <h3 className="product-title" title={product.name}>
+            {product.name}
+          </h3>
+        </Link>
 
-        <div className="product-footer">
-          <div className="product-pricing">
-            <span className="current-price">${product.price.toFixed(2)}</span>
-            {product.originalPrice && (
-              <span className="original-price">${product.originalPrice.toFixed(2)}</span>
-            )}
-          </div>
+        <div className="product-pricing">
+          <span className="current-price">${product.price.toFixed(2)}</span>
+          {product.originalPrice && (
+            <span className="original-price">${product.originalPrice.toFixed(2)}</span>
+          )}
+        </div>
+
+        {/* Action Buttons: View Details + Add to Cart */}
+        <div className="product-actions-group">
+          <Link
+            to={`/product/${product.id}`}
+            className="view-details-btn"
+          >
+            <span>View Details</span>
+            <ArrowRight size={14} />
+          </Link>
 
           <button
             type="button"
@@ -91,7 +104,7 @@ export default function ProductCard({ product, onAddToCart }) {
             ) : (
               <>
                 <ShoppingCart size={16} />
-                <span>Add to Cart</span>
+                <span>Add</span>
               </>
             )}
           </button>

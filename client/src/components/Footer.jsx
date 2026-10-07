@@ -1,5 +1,6 @@
 import React from 'react';
-import { ShoppingBag, Mail, Phone, MapPin, Send, Heart, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ShoppingBag, Mail, Phone, MapPin, Send } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -37,14 +38,14 @@ export default function Footer() {
         <div className="footer-grid">
           {/* Brand Info */}
           <div className="footer-col brand-col">
-            <a href="#" className="footer-logo">
+            <Link to="/" className="footer-logo">
               <div className="logo-icon">
                 <ShoppingBag size={20} />
               </div>
               <span className="logo-text">
                 Shop<span className="logo-accent">Sphere</span>
               </span>
-            </a>
+            </Link>
             <p className="footer-desc">
               Your premier destination for high quality lifestyle, electronics, fashion, and everyday essentials. Delivered seamlessly to your doorstep.
             </p>
@@ -59,11 +60,11 @@ export default function Footer() {
           <div className="footer-col">
             <h4 className="footer-col-title">Quick Links</h4>
             <ul className="footer-links-list">
-              <li><a href="#">Home</a></li>
-              <li><a href="#categories">Shop Categories</a></li>
-              <li><a href="#products">Featured Products</a></li>
-              <li><a href="#deals">Special Offers</a></li>
-              <li><a href="#">Trending Now</a></li>
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/products">Browse All Products</Link></li>
+              <li><Link to="/cart">My Shopping Cart</Link></li>
+              <li><Link to="/login">Account Login</Link></li>
+              <li><Link to="/register">Create Account</Link></li>
             </ul>
           </div>
 
@@ -71,11 +72,11 @@ export default function Footer() {
           <div className="footer-col">
             <h4 className="footer-col-title">Customer Service</h4>
             <ul className="footer-links-list">
-              <li><a href="#">Track Order</a></li>
-              <li><a href="#">Shipping & Returns</a></li>
-              <li><a href="#">Payment Methods</a></li>
-              <li><a href="#">Help Center / FAQ</a></li>
-              <li><a href="#">Contact Us</a></li>
+              <li><Link to="/products">Track Order</Link></li>
+              <li><Link to="/products">Shipping & Returns</Link></li>
+              <li><Link to="/products">Payment Methods</Link></li>
+              <li><Link to="/products">Help Center / FAQ</Link></li>
+              <li><Link to="/products">Contact Support</Link></li>
             </ul>
           </div>
 
@@ -83,11 +84,11 @@ export default function Footer() {
           <div className="footer-col">
             <h4 className="footer-col-title">Company</h4>
             <ul className="footer-links-list">
-              <li><a href="#">About ShopSphere</a></li>
-              <li><a href="#">Careers</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms of Service</a></li>
-              <li><a href="#">Affiliate Program</a></li>
+              <li><Link to="/">About ShopSphere</Link></li>
+              <li><Link to="/">Careers</Link></li>
+              <li><Link to="/">Privacy Policy</Link></li>
+              <li><Link to="/">Terms of Service</Link></li>
+              <li><Link to="/">Affiliate Program</Link></li>
             </ul>
           </div>
         </div>
@@ -96,13 +97,13 @@ export default function Footer() {
         <div className="footer-bottom">
           <p>© {new Date().getFullYear()} ShopSphere Inc. All rights reserved.</p>
           <div className="footer-bottom-links">
-            <a href="#">Privacy</a>
+            <Link to="/">Privacy</Link>
             <span>•</span>
-            <a href="#">Terms</a>
+            <Link to="/">Terms</Link>
             <span>•</span>
-            <a href="#">Cookies</a>
+            <Link to="/">Cookies</Link>
             <span>•</span>
-            <a href="#">Security</a>
+            <Link to="/">Security</Link>
           </div>
         </div>
       </div>

@@ -9,6 +9,9 @@ export const SAMPLE_PRODUCTS = [
     rating: 4.9,
     reviews: 428,
     isFeatured: true,
+    description: 'Industry-leading noise cancellation with two processors and 8 microphones. Enjoy ultra-clear hands-free calling, up to 30 hours of battery life, and high-resolution wireless audio streaming.',
+    features: ['Auto NC Optimizer', 'Up to 30 hours battery', 'Multipoint connection', 'Integrated V1 Processor'],
+    inStock: true,
     image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80'
   },
   {
@@ -21,6 +24,9 @@ export const SAMPLE_PRODUCTS = [
     rating: 4.8,
     reviews: 312,
     isFeatured: true,
+    description: 'Powerful S9 SiP chip with a magical new double tap gesture. Advanced health, safety, and fitness metrics with an always-on brighter Retina display.',
+    features: ['Blood Oxygen & ECG apps', 'Double tap gesture', 'Crash Detection', 'Water resistant 50m'],
+    inStock: true,
     image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80'
   },
   {
@@ -33,6 +39,9 @@ export const SAMPLE_PRODUCTS = [
     rating: 4.9,
     reviews: 195,
     isFeatured: false,
+    description: 'Handcrafted from vegetable-tanned Italian leather. Features heavy-duty brass hardware, water-resistant canvas lining, and a dedicated shoe compartment.',
+    features: ['100% Genuine Full-Grain Leather', 'YKK Brass Zippers', 'Detachable Shoulder Strap', 'Cabin Approved Size'],
+    inStock: true,
     image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80'
   },
   {
@@ -45,6 +54,9 @@ export const SAMPLE_PRODUCTS = [
     rating: 4.7,
     reviews: 144,
     isFeatured: false,
+    description: 'Timeless tear-drop aviator design with lightweight titanium frame and TAC polarized scratch-resistant lenses for 100% UV protection.',
+    features: ['Polarized TAC Lenses', 'Titanium Ultra-Light Frame', '100% UV400 Protection', 'Includes Leather Case'],
+    inStock: true,
     image: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=800&q=80'
   },
   {
@@ -57,6 +69,9 @@ export const SAMPLE_PRODUCTS = [
     rating: 4.8,
     reviews: 89,
     isFeatured: false,
+    description: 'Sleek matte finish architectural lamp with touch dimming, 5 color temperature modes, wireless charging base, and flexible 360-degree rotation.',
+    features: ['5 Color Modes & 10 Brightness Levels', 'Integrated Qi Wireless Charger', 'Eye-Care Diffuser', 'Auto-Off Timer'],
+    inStock: true,
     image: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800&q=80'
   },
   {
@@ -69,6 +84,9 @@ export const SAMPLE_PRODUCTS = [
     rating: 4.9,
     reviews: 267,
     isFeatured: true,
+    description: 'Engineered for all-day comfort with dynamic adaptive lumbar support, 3D adjustable armrests, and high-elasticity Korean breathable mesh.',
+    features: ['Adaptive Lumbar Support', '3D Adjustable Armrests', '135° Recline with Tilt Lock', 'Class 4 Heavy Duty Gas Lift'],
+    inStock: true,
     image: 'https://images.unsplash.com/photo-1580481077190-7361296d4e19?auto=format&fit=crop&w=800&q=80'
   },
   {
@@ -81,6 +99,9 @@ export const SAMPLE_PRODUCTS = [
     rating: 4.8,
     reviews: 73,
     isFeatured: false,
+    description: 'Designed for tournament precision and explosive power. Built with high-modulus graphite carbon fibers and vibration dampening technology.',
+    features: ['100% Graphite Carbon Matrix', '100 sq inch Head Size', '300g Balanced Weight', 'Shock-Absorbing Grip'],
+    inStock: true,
     image: 'https://images.unsplash.com/photo-1617083934555-563d415951d9?auto=format&fit=crop&w=800&q=80'
   },
   {
@@ -93,6 +114,69 @@ export const SAMPLE_PRODUCTS = [
     rating: 4.9,
     reviews: 520,
     isFeatured: true,
+    description: 'Double-walled copper-lined vacuum insulation keeps beverages iced for 24 hours or steaming hot for 12 hours. Features LED temperature readout cap.',
+    features: ['Smart LED Temperature Display', 'Food-Grade 18/8 Stainless Steel', 'Leakproof Magnetic Lid', 'BPA-Free'],
+    inStock: true,
     image: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 9,
+    name: 'Ultra-Thin 4K Wireless Mechanical Keyboard',
+    category: 'Electronics',
+    price: 129.99,
+    originalPrice: 159.99,
+    discount: 18,
+    rating: 4.8,
+    reviews: 210,
+    isFeatured: false,
+    description: 'Low profile hot-swappable tactile switches with aircraft-grade aluminum chassis, RGB per-key backlighting, and Bluetooth 5.2 triple-device pairing.',
+    features: ['Low Profile Gateron Switches', 'Bluetooth 5.2 + 2.4G + USB-C', 'Mac & Windows Compatible', 'Aluminum Unibody'],
+    inStock: true,
+    image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 10,
+    name: 'Classic Minimalist Automatic Mechanical Watch',
+    category: 'Fashion',
+    price: 260.00,
+    originalPrice: 320.00,
+    discount: 19,
+    rating: 4.9,
+    reviews: 168,
+    isFeatured: true,
+    description: 'Exquisite open-heart skeleton dial with Japanese 24-jewel automatic self-winding movement, sapphire crystal glass, and genuine alligator grain leather band.',
+    features: ['Japanese Automatic Movement', 'Scratchproof Sapphire Crystal', '50M Water Resistance', 'Exhibition Caseback'],
+    inStock: true,
+    image: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 11,
+    name: 'Modern Ceramic Pour-Over Artisan Coffee Set',
+    category: 'Home',
+    price: 54.00,
+    originalPrice: 65.00,
+    discount: 17,
+    rating: 4.7,
+    reviews: 94,
+    isFeatured: false,
+    description: 'Artisan handcrafted ceramic dripper with thermal insulated glass carafe and walnut wooden collar for the ultimate pour-over brewing experience.',
+    features: ['Handcrafted Ceramic Dripper', 'Heat-Resistant Borosilicate Glass', 'Walnut Wood Collar & Coaster', 'Capacity 600ml'],
+    inStock: true,
+    image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 12,
+    name: 'Professional Pro-Grip Non-Slip Eco Yoga Mat',
+    category: 'Sports',
+    price: 68.00,
+    originalPrice: 85.00,
+    discount: 20,
+    rating: 4.9,
+    reviews: 310,
+    isFeatured: false,
+    description: 'Dual-layered natural tree rubber and moisture-wicking polyurethane surface. Features alignment guide lines and ultimate 5mm joint cushioning.',
+    features: ['100% Biodegradable Tree Rubber', 'Laser-Etched Alignment Lines', 'Ultra-Grippy Wet & Dry Surface', 'Includes Carrying Strap'],
+    inStock: true,
+    image: 'https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?auto=format&fit=crop&w=800&q=80'
   }
 ];

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import { ShoppingBag, Search, Menu, X, User, ArrowRight } from 'lucide-react';
 
 export default function Navbar({ cartCount = 0 }) {
@@ -6,13 +7,13 @@ export default function Navbar({ cartCount = 0 }) {
 
   return (
     <header className="navbar-wrapper">
-      {/* Top Notification Bar */}
+      {/* Top Announcement Bar */}
       <div className="announcement-bar">
         <div className="container announcement-content">
-          <span>⚡ Flash Sale: Get up to 40% off on all trending products this week!</span>
-          <a href="#products" className="announcement-link">
-            Shop Now <ArrowRight size={14} />
-          </a>
+          <span>⚡ Spring Sale: Enjoy up to 25% off across featured collections!</span>
+          <Link to="/products" className="announcement-link">
+            Shop Catalog <ArrowRight size={14} />
+          </Link>
         </div>
       </div>
 
@@ -20,51 +21,64 @@ export default function Navbar({ cartCount = 0 }) {
       <nav className="navbar">
         <div className="container nav-container">
           {/* Logo */}
-          <a href="#" className="nav-logo">
+          <Link to="/" className="nav-logo">
             <div className="logo-icon">
               <ShoppingBag size={22} />
             </div>
             <span className="logo-text">
               Shop<span className="logo-accent">Sphere</span>
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Nav Links */}
           <ul className="nav-links">
             <li>
-              <a href="#" className="nav-link active">Home</a>
+              <NavLink
+                to="/"
+                className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+                end
+              >
+                Home
+              </NavLink>
             </li>
             <li>
-              <a href="#categories" className="nav-link">Categories</a>
+              <NavLink
+                to="/products"
+                className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+              >
+                Products
+              </NavLink>
             </li>
             <li>
-              <a href="#products" className="nav-link">Products</a>
-            </li>
-            <li>
-              <a href="#deals" className="nav-link">Deals</a>
+              <NavLink
+                to="/cart"
+                className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}
+              >
+                Cart
+              </NavLink>
             </li>
           </ul>
 
           {/* Right Actions */}
           <div className="nav-actions">
-            <a href="#products" className="icon-btn search-btn" aria-label="Search">
+            <Link to="/products" className="icon-btn search-btn" aria-label="Search Products">
               <Search size={20} />
-            </a>
+            </Link>
 
             {/* Cart Button */}
-            <a href="#products" className="cart-btn" aria-label="Shopping Cart">
+            <Link to="/cart" className="cart-btn" aria-label="Shopping Cart">
               <div className="cart-icon-wrap">
                 <ShoppingBag size={20} />
                 {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
               </div>
               <span className="cart-label">Cart</span>
-            </a>
+            </Link>
 
             {/* Login Button */}
-            <button className="login-btn" type="button" onClick={() => alert('Login feature coming soon!')}>
+            <Link to="/login" className="login-btn">
               <User size={18} />
               <span>Login</span>
-            </button>
+            </Link>
 
             {/* Mobile Hamburger */}
             <button
@@ -82,28 +96,29 @@ export default function Navbar({ cartCount = 0 }) {
           <div className="mobile-menu">
             <ul className="mobile-nav-links">
               <li>
-                <a href="#" onClick={() => setMobileMenuOpen(false)}>Home</a>
+                <Link to="/" onClick={() => setMobileMenuOpen(false)}>
+                  Home
+                </Link>
               </li>
               <li>
-                <a href="#categories" onClick={() => setMobileMenuOpen(false)}>Categories</a>
+                <Link to="/products" onClick={() => setMobileMenuOpen(false)}>
+                  Products
+                </Link>
               </li>
               <li>
-                <a href="#products" onClick={() => setMobileMenuOpen(false)}>Products</a>
-              </li>
-              <li>
-                <a href="#deals" onClick={() => setMobileMenuOpen(false)}>Deals</a>
+                <Link to="/cart" onClick={() => setMobileMenuOpen(false)}>
+                  Cart ({cartCount})
+                </Link>
               </li>
               <li className="mobile-menu-action">
-                <button
+                <Link
+                  to="/login"
                   className="login-btn w-full"
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    alert('Login feature coming soon!');
-                  }}
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   <User size={18} />
                   <span>Login / Register</span>
-                </button>
+                </Link>
               </li>
             </ul>
           </div>

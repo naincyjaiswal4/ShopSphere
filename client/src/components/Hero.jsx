@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, ShoppingCart, Sparkles, ShieldCheck, Truck, RotateCcw, Headphones } from 'lucide-react';
 
 export default function Hero() {
@@ -21,10 +22,10 @@ export default function Hero() {
           </p>
 
           <div className="hero-cta-group">
-            <a href="#products" className="btn-primary hero-btn">
+            <Link to="/products" className="btn-primary hero-btn">
               <span>Shop Now</span>
               <ArrowRight size={18} />
-            </a>
+            </Link>
             <a href="#categories" className="btn-secondary">
               <span>Explore Categories</span>
             </a>

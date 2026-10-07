@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Smartphone, Shirt, Home as HomeIcon, Trophy, ArrowUpRight } from 'lucide-react';
 
 const CATEGORIES = [
@@ -77,10 +78,10 @@ export default function Categories() {
                     <h3 className="category-title">{cat.name}</h3>
                     <p className="category-desc">{cat.description}</p>
                   </div>
-                  <a href="#products" className="category-link">
+                  <Link to="/products" className="category-link">
                     <span>Shop Collection</span>
                     <ArrowUpRight size={16} />
-                  </a>
+                  </Link>
                 </div>
               </div>
             );
