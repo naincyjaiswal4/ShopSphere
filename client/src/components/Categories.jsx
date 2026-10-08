@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Smartphone, Shirt, Home as HomeIcon, Trophy, ArrowUpRight } from 'lucide-react';
+import { handleImageError } from '../utils/imageFallback';
 
 const CATEGORIES = [
   {
@@ -10,7 +11,7 @@ const CATEGORIES = [
     itemCount: '120+ Items',
     image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80',
     icon: Smartphone,
-    color: '#4f46e5'
+    color: '#2D6A4F'
   },
   {
     id: 'fashion',
@@ -19,7 +20,7 @@ const CATEGORIES = [
     itemCount: '350+ Items',
     image: 'https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=600&q=80',
     icon: Shirt,
-    color: '#ec4899'
+    color: '#F4A261'
   },
   {
     id: 'home',
@@ -28,7 +29,7 @@ const CATEGORIES = [
     itemCount: '180+ Items',
     image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80',
     icon: HomeIcon,
-    color: '#06b6d4'
+    color: '#1B4332'
   },
   {
     id: 'sports',
@@ -37,7 +38,7 @@ const CATEGORIES = [
     itemCount: '95+ Items',
     image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=600&q=80',
     icon: Trophy,
-    color: '#10b981'
+    color: '#2D6A4F'
   }
 ];
 
@@ -65,6 +66,7 @@ export default function Categories() {
                   alt={cat.name}
                   className="category-img"
                   loading="lazy"
+                  onError={handleImageError}
                 />
                 <div className="category-overlay"></div>
                 <div className="category-content">

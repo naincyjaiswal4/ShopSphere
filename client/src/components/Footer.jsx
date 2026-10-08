@@ -1,8 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShoppingBag, Mail, Phone, MapPin, Send } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+import { ShoppingBag, Mail, Phone, MapPin, Send, ShieldCheck, Database, Lock } from 'lucide-react';
 
 export default function Footer() {
+  const { currentUser, isAdmin } = useAuth();
+
+  if (isAdmin || currentUser?.role === 'admin') {
+    return (
+      <footer className="footer admin-footer" style={{ background: '#283618', color: '#FEFAE0', borderTop: '2px solid #606C38', padding: '1.5rem 0' }}>
+        <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', fontSize: '0.85rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <ShieldCheck size={18} color="#DDA15E" />
+            <span style={{ fontWeight: '700' }}>ShopSphere Admin Master Console</span>
+            <span style={{ color: '#DDA15E' }}>• MongoDB Connected</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px', color: '#DDA15E' }}>
+            <span><Lock size={14} style={{ display: 'inline', marginRight: '4px' }} /> Restricted Access</span>
+            <span>Superuser Session: {currentUser?.email}</span>
+          </div>
+        </div>
+      </footer>
+    );
+  }
+
   return (
     <footer className="footer">
       {/* Newsletter Section */}

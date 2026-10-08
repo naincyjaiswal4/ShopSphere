@@ -1,16 +1,57 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Mail, Lock, LogIn, ShoppingBag, Eye, EyeOff, ArrowRight } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import { useCart } from '../context/CartContext';
+import {
+  Mail,
+  Lock,
+  LogIn,
+  ShoppingBag,
+  Eye,
+  EyeOff,
+  ArrowRight,
+  ShieldCheck,
+  AlertCircle,
+  UserCheck,
+  Sparkles
+} from 'lucide-react';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
+  const [rememberMe, setRememberMe] = useState(true);
+  const [errorMsg, setErrorMsg] = useState('');
 
-  const handleSubmit = (e) => {
+  const { login, loading, currentUser } = useAuth();
+  const { showToast } = useCart();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert(`Demo Login submitted for: ${email}\n(Backend authentication will be integrated in future phases)`);
+    setErrorMsg('');
+
+    const result = await login(email, password);
+
+    if (result.success) {
+      showToast(
+        `👋 Welcome back, ${result.user.name}! (${result.user.role === 'admin' ? 'Admin' : 'Customer'})`,
+        'success'
+      );
+      if (result.user.role === 'admin') {
+        navigate('/dashboard');
+      } else {
+        navigate('/products');
+      }
+    } else {
+      setErrorMsg(result.message || 'Invalid email or password');
+    }
+  };
+
+  const handleQuickFill = (demoEmail, demoPass) => {
+    setEmail(demoEmail);
+    setPassword(demoPass);
+    setErrorMsg('');
   };
 
   return (
@@ -22,8 +63,41 @@ export default function Login() {
             <ShoppingBag size={24} />
           </div>
           <h1 className="auth-title">Welcome Back</h1>
-          <p className="auth-subtitle">Log in to your ShopSphere account to manage orders and wishlist</p>
+          <p className="auth-subtitle">
+            Sign in to your account authenticated via MongoDB database
+          </p>
         </div>
+
+        {/* Quick Demo Credentials Pill Selector */}
+        <div className="quick-demo-auth-box">
+          <span className="quick-demo-label">
+            <Sparkles size={13} /> Quick Login with Seeded MongoDB Accounts:
+          </span>
+          <div className="quick-demo-btns">
+            <button
+              type="button"
+              className="quick-demo-pill admin"
+              onClick={() => handleQuickFill('admin@shopsphere.com', 'AdminPassword123!')}
+            >
+              👑 Admin (admin@shopsphere.com)
+            </button>
+            <button
+              type="button"
+              className="quick-demo-pill user"
+              onClick={() => handleQuickFill('aarav.mehta@example.com', 'UserPassword123!')}
+            >
+              👤 Customer (aarav.mehta@example.com)
+            </button>
+          </div>
+        </div>
+
+        {/* Error Alert */}
+        {errorMsg && (
+          <div className="auth-error-banner">
+            <AlertCircle size={16} />
+            <span>{errorMsg}</span>
+          </div>
+        )}
 
         {/* Login Form */}
         <form onSubmit={handleSubmit} className="auth-form">
@@ -52,9 +126,6 @@ export default function Login() {
               <label htmlFor="password" className="form-label">
                 Password
               </label>
-              <a href="#" onClick={(e) => { e.preventDefault(); alert('Password reset coming soon!'); }} className="forgot-link">
-                Forgot password?
-              </a>
             </div>
             <div className="input-wrap">
               <Lock size={18} className="input-icon" />
@@ -86,14 +157,20 @@ export default function Login() {
                 checked={rememberMe}
                 onChange={(e) => setRememberMe(e.target.checked)}
               />
-              <span>Remember me for 30 days</span>
+              <span>Remember me on this device</span>
             </label>
           </div>
 
           {/* Submit Button */}
-          <button type="submit" className="auth-submit-btn">
-            <span>Sign In</span>
-            <LogIn size={18} />
+          <button type="submit" disabled={loading} className="auth-submit-btn">
+            {loading ? (
+              <span>Authenticating with MongoDB...</span>
+            ) : (
+              <>
+                <span>Sign In with MongoDB</span>
+                <LogIn size={18} />
+              </>
+            )}
           </button>
         </form>
 
@@ -110,3 +187,4 @@ export default function Login() {
     </div>
   );
 }
+

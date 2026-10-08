@@ -1,0 +1,26 @@
+{
+  "name": "shopsphere",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ShopSphere E-Commerce Application",
+  "scripts": {
+    "dev": "npm run dev --prefix client",
+    "dev:client": "npm run dev --prefix client",
+    "dev:server": "npm run dev --prefix server",
+    "build": "npm run build --prefix client",
+    "db:inspect": "npm run db:inspect --prefix server",
+    "db:seed": "npm run db:seed --prefix server",
+    "client": "npm --prefix client",
+    "server": "npm --prefix server"
+  },
+  "keywords": [
+    "shopsphere",
+    "ecommerce",
+    "mern",
+    "react",
+    "vite",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "ISC"
+}

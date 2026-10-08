@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { User, Mail, Lock, UserPlus, ShoppingBag, Eye, EyeOff, ArrowRight } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import { useCart } from '../context/CartContext';
+import { User, Mail, Lock, UserPlus, ShoppingBag, Eye, EyeOff, ArrowRight, AlertCircle } from 'lucide-react';
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -8,17 +10,29 @@ export default function Register() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [agreeTerms, setAgreeTerms] = useState(false);
+  const [agreeTerms, setAgreeTerms] = useState(true);
   const [error, setError] = useState('');
 
-  const handleSubmit = (e) => {
+  const { register, loading } = useAuth();
+  const { showToast } = useCart();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       setError('Passwords do not match. Please check again.');
       return;
     }
     setError('');
-    alert(`Demo Registration submitted for: ${name} (${email})\n(Backend authentication will be integrated in future phases)`);
+
+    const result = await register(name, email, password);
+
+    if (result.success) {
+      showToast(`🎉 Account created for ${result.user.name}! Welcome to ShopSphere.`, 'success');
+      navigate('/products');
+    } else {
+      setError(result.message || 'Registration failed');
+    }
   };
 
   return (
@@ -30,11 +44,14 @@ export default function Register() {
             <ShoppingBag size={24} />
           </div>
           <h1 className="auth-title">Create an Account</h1>
-          <p className="auth-subtitle">Join ShopSphere to enjoy personalized recommendations and fast checkout</p>
+          <p className="auth-subtitle">
+            Join ShopSphere — saved directly into your MongoDB database
+          </p>
         </div>
 
         {error && (
           <div className="auth-error-banner">
+            <AlertCircle size={16} />
             <span>{error}</span>
           </div>
         )}
@@ -52,7 +69,7 @@ export default function Register() {
                 id="name"
                 type="text"
                 required
-                placeholder="John Doe"
+                placeholder="e.g. Rahul Sharma"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="auth-input"
@@ -91,7 +108,7 @@ export default function Register() {
                 type={showPassword ? 'text' : 'password'}
                 required
                 minLength={6}
-                placeholder="Create a strong password"
+                placeholder="Create a strong password (min 6 chars)"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="auth-input"
@@ -141,9 +158,15 @@ export default function Register() {
           </div>
 
           {/* Submit Button */}
-          <button type="submit" className="auth-submit-btn">
-            <span>Register Now</span>
-            <UserPlus size={18} />
+          <button type="submit" disabled={loading} className="auth-submit-btn">
+            {loading ? (
+              <span>Saving to MongoDB...</span>
+            ) : (
+              <>
+                <span>Register with MongoDB</span>
+                <UserPlus size={18} />
+              </>
+            )}
           </button>
         </form>
 

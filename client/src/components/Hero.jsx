@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ShoppingCart, Sparkles, ShieldCheck, Truck, RotateCcw, Headphones } from 'lucide-react';
+import { handleImageError } from '../utils/imageFallback';
 
 export default function Hero() {
   return (
@@ -58,6 +59,7 @@ export default function Hero() {
                 src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=80"
                 alt="ShopSphere Lifestyle Collection"
                 className="hero-main-img"
+                onError={handleImageError}
               />
               <div className="hero-overlay-badge">
                 <span className="badge-tag">Hot Deal</span>
@@ -95,7 +97,7 @@ export default function Hero() {
             </div>
             <div>
               <h4>Free Express Delivery</h4>
-              <p>On orders above $50</p>
+              <p>On orders above ₹999</p>
             </div>
           </div>
 
